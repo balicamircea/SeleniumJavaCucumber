@@ -45,11 +45,6 @@ jobs:
     - name: Run Selenium tests
       run: mvn clean test || true
 
-    - name: Generate Allure report
-      run: |
-        mkdir -p allure-results
-        mv target/allure-results allure-results/
-
     - name: Upload Allure results
       uses: actions/upload-artifact@v4
       with:
