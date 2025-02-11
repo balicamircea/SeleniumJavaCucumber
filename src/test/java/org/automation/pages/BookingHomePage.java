@@ -4,6 +4,7 @@ import static org.automation.utils.Utils.waitForElementNotStale;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,11 @@ public class BookingHomePage {
   }
 
   public void acceptCookies() {
-    driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+    if(!driver.findElements(By.id("onetrust-accept-btn-handler")).isEmpty()) {
+      driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+    }
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
   }
 
   public void searchForCity(String city) {
