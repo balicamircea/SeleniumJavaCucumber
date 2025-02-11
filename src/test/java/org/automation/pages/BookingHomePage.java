@@ -54,6 +54,7 @@ public class BookingHomePage {
 
   public void cityIs(String city) {
     Utils.waitToRender(driver);
-    assertTrue(driver.findElement(By.tagName("h1")).getText().startsWith(city));
+    String title = driver.findElement(By.tagName("h1")).getText();
+    assertTrue(title.startsWith(city), "Instead title is: " + title);
   }
 }
