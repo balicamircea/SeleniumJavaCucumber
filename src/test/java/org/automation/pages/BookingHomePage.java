@@ -54,7 +54,7 @@ public class BookingHomePage {
 
   public void cityIs(String city) {
     Utils.waitToRender(driver);
-    String title = driver.findElement(By.tagName("h1")).getText();
+    String title = driver.findElement(By.cssSelector("[data-capla-component-boundary] h1")).getText();
     assertTrue(title.startsWith(city), "Instead title is: " + title);
   }
 }
