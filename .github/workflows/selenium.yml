@@ -37,8 +37,10 @@ jobs:
 
     - name: Install Allure CLI
       run: |
-        sudo apt-get update -y
-        sudo apt-get install -y allure    
+        sudo add-apt-repository ppa:allure-framework/allure
+        sudo apt update   
+        sudo apt install allure
+        allure --version
         
     - name: Cache Maven dependencies
       uses: actions/cache@v3
