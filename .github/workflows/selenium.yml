@@ -37,9 +37,9 @@ jobs:
 
     - name: Install Allure CLI
       run: |
-        sudo add-apt-repository ppa:allure-framework/allure
-        sudo apt update   
-        sudo apt install allure
+        wget https://github.com/allure-framework/allure2/releases/download/2.32.2/allure-2.32.2.tgz
+        tar -xvzf allure-2.32.2.tgz
+        sudo ln -s $(pwd)/allure-2.32.2/bin/allure /usr/local/bin/allure
         allure --version
         
     - name: Cache Maven dependencies
