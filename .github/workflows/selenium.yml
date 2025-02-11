@@ -61,7 +61,6 @@ jobs:
     - name: Serve Allure report (Optional)
       run: |
         allure generate allure-results -o allure-report
-        allure open allure-report
 
     - name: Deploy Allure report to gh-pages
       run: |
