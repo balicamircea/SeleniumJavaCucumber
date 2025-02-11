@@ -10,9 +10,9 @@ Feature: Booking website search functionality
     Examples:
     | city          |
     | Paris         |
-#    | Rome          |
-#    | London        |
-#    | Should fail   |
+    | Rome          |
+    | London        |
+    | Should fail   |
 
   @smoke
   Scenario Outline: Search2 for hotels in America
@@ -23,6 +23,6 @@ Feature: Booking website search functionality
     Examples:
       | city          |
       | San Francisco |
-#      | Los Angeles   |
-#      | New York      |
-#      | Should fail   |
+      | Los Angeles   |
+      | New York      |
+      | Should fail   |
