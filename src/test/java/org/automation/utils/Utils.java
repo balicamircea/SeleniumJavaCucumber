@@ -1,9 +1,12 @@
 package org.automation.utils;
 
+import io.qameta.allure.Attachment;
 import java.time.Duration;
 import java.util.function.Function;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Sleeper;
@@ -38,6 +41,11 @@ public class Utils {
       Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(noOfSec));
     } catch (InterruptedException ignored) {
     }
+  }
+
+  @Attachment(value = "Screenshot", type = "image/png")
+  public static byte[] takeScreenshot(WebDriver driver) {
+    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 
 }

@@ -12,7 +12,7 @@ public class BookingSteps {
   private BookingHomePage bookingHomePage = new BookingHomePage(driver);
 
   @Given("I open the Booking.com homepage")
-  public void i_open_the_booking_homepage() {
+  public void iOpenTheBookingHomepage() {
     bookingHomePage = new BookingHomePage(driver);
     bookingHomePage.open();
   }

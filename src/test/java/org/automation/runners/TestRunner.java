@@ -11,6 +11,7 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @SelectClasspathResource("features") // Ensure this path matches your resources folder
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "org.automation.steps")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, json:target/cucumber-report.json")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm")
 @ConfigurationParameter(key = FEATURES_PROPERTY_NAME, value = "src/test/resources/features")
 @ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@smoke")
 public class TestRunner {

@@ -2,7 +2,9 @@ package org.automation.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import java.time.Duration;
+import org.automation.utils.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -19,8 +21,11 @@ public class Hooks {
   }
 
   @After
-  public void tearDown() {
-    System.out.println("Closing WebDriver...");
+  public void tearDown(Scenario scenario) {
+    if (scenario.isFailed()) {  // Capture screenshot only if test fails
+      byte [] screenshot = Utils.takeScreenshot(driver);
+      scenario.attach(screenshot, "image/png", scenario.getName());
+    }
     if (driver != null) {
       driver.quit();
     }
