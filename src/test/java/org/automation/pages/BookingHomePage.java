@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.List;
+import org.automation.utils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,14 +26,21 @@ public class BookingHomePage {
 
   public void acceptCookies() {
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-    if(!driver.findElements(By.id("onetrust-accept-btn-handler")).isEmpty()) {
-      driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+    By acceptCookiesBy = By.id("onetrust-accept-btn-handler");
+    if(!driver.findElements(acceptCookiesBy).isEmpty()) {
+      driver.findElement(acceptCookiesBy).click();
     }
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
   }
 
   public void searchForCity(String city) {
     WebElement searchBox = driver.findElement(By.cssSelector("[data-testid = 'destination-container']"));
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+    By closeDialogBy = By.cssSelector("[role=dialog] [aria-label='Dismiss sign-in info.']");
+    if(!driver.findElements(closeDialogBy).isEmpty()) {
+      driver.findElement(closeDialogBy).click();
+    }
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     searchBox.click();
     searchBox.findElement(By.tagName("input")).clear();
     searchBox.findElement(By.tagName("input")).sendKeys(city);
@@ -45,6 +53,7 @@ public class BookingHomePage {
   }
 
   public void cityIs(String city) {
-    assertTrue(driver.findElement(By.cssSelector("[aria-live = assertive]")).getText().startsWith(city));
+    Utils.waitToRender(driver);
+    assertTrue(driver.findElement(By.tagName("h1")).getText().startsWith(city));
   }
 }
