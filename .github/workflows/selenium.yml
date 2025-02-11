@@ -62,15 +62,16 @@ jobs:
       run: |
         allure generate allure-results -o allure-report
 
-    - name: Deploy Allure report to gh-pages
+    - name: Set up Git for deployment
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        # Create or switch to the gh-pages branch
+        git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+
+    - name: Deploy Allure report to gh-pages
+      run: |
         git checkout --orphan gh-pages
-        # Move Allure report content to the root of gh-pages
         mv allure-report/* .
         git add .
         git commit -m "Update Allure report"
-        # Push the report to the gh-pages branch
-        git push origin gh-pages --force    
+        git push origin gh-pages --force
